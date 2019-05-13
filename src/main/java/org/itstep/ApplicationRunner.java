@@ -8,8 +8,9 @@ public class ApplicationRunner
 {
     public static void main( String[] args )
     {
-
-            SpringApplication.run(ApplicationRunner.class, args);
+            SpringApplication context = new SpringApplication(ApplicationRunner.class);
+            context.setAdditionalProfiles("dev");
+            context.run(args);
 
 //            User admin = new User();
 //            admin.setEmail("ignatenko2207@gmail.com");

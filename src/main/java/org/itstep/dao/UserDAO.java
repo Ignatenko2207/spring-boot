@@ -9,15 +9,17 @@ import org.itstep.dao.connection.ConnectionFactory;
 import org.itstep.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationContext;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.PostConstruct;
+
 @Setter
 @Getter
-@Repository
 public class UserDAO{
 
-    @Autowired
 	private ConnectionFactory connectionFactory;
 	
 	public User saveOrUpdate(User user){
