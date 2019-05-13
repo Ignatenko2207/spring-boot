@@ -1,5 +1,6 @@
 package org.itstep.controller;
 
+import lombok.Setter;
 import org.itstep.entity.User;
 import org.itstep.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

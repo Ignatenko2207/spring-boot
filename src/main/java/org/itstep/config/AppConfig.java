@@ -6,9 +6,10 @@ import org.itstep.dao.connection.H2Factory;
 import org.itstep.dao.connection.PostgresFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.*;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
-@ComponentScan(basePackages = "org.itstep")
+@EnableSwagger2
 public class AppConfig {
 
     @Bean()
