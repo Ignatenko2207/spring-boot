@@ -10,6 +10,6 @@ public interface UserService {
     User update(User user);
     User findOne(Integer id);
     List<User> findAll();
-    void delete(User user);
+    void delete(Integer id);
 
 }

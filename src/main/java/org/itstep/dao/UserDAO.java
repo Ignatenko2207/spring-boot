@@ -1,20 +1,12 @@
 package org.itstep.dao;
 
-import java.util.List;
-
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.Session;
 import org.itstep.dao.connection.ConnectionFactory;
 import org.itstep.entity.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.ApplicationContext;
-import org.springframework.core.env.Environment;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
-import javax.annotation.PostConstruct;
+import java.util.List;
 
 @Setter
 @Getter
@@ -34,7 +26,7 @@ public class UserDAO{
 	public User findOne(Integer id){
 		Session session = connectionFactory.getSessionFactory().openSession();
         session.getTransaction().begin();
-        User userFromDB = (User)session.find(User.class, id);
+        User userFromDB = session.find(User.class, id);
         session.getTransaction().commit();
         session.close();
         return userFromDB;
