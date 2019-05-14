@@ -34,6 +34,4 @@ public class AppConfig {
         userDAO.setConnectionFactory(connectionFactory);
         return userDAO;
     }
-
-
 }
