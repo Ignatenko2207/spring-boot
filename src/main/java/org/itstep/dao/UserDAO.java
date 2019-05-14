@@ -14,19 +14,28 @@ public class UserDAO{
 
 	private ConnectionFactory connectionFactory;
 	
-	public User saveOrUpdate(User user){
+	public Integer save(User user){
 		Session session = connectionFactory.getSessionFactory().openSession();
         session.getTransaction().begin();
-        session.saveOrUpdate(user);
+        Integer id = (Integer) session.save(user);
+        session.getTransaction().commit();
+        session.close();
+        return id;
+	}
+
+    public User update(User user){
+        Session session = connectionFactory.getSessionFactory().openSession();
+        session.getTransaction().begin();
+        session.update(user);
         session.getTransaction().commit();
         session.close();
         return user;
-	}
+    }
 	
 	public User findOne(Integer id){
 		Session session = connectionFactory.getSessionFactory().openSession();
         session.getTransaction().begin();
-        User userFromDB = session.find(User.class, id);
+        User userFromDB = session.get(User.class, id);
         session.getTransaction().commit();
         session.close();
         return userFromDB;

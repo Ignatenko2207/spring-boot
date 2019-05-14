@@ -16,7 +16,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public User save(User user) {
         if (userDAO.findOne(user.getId()) == null){
-            return userDAO.saveOrUpdate(user);
+            user.setId(userDAO.save(user));
+            return user;
         }
         return null;
     }
@@ -24,7 +25,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User update(User user) {
         if (userDAO.findOne(user.getId()) != null){
-            return userDAO.saveOrUpdate(user);
+            return userDAO.update(user);
         }
         return null;
     }
