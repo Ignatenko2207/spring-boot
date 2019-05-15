@@ -15,16 +15,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(User user) {
-        if (userDAO.findOne(user.getId()) == null){
-            user.setId(userDAO.save(user));
-            return user;
-        }
-        return null;
+        return userDAO.save(user);
     }
 
     @Override
     public User update(User user) {
-        if (userDAO.findOne(user.getId()) != null){
+        if (user.getId() != null && userDAO.findOne(user.getId()) != null) {
             return userDAO.update(user);
         }
         return null;
@@ -32,7 +28,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findOne(Integer id) {
-        return userDAO.findOne(id);
+        if (id != null) {
+            return userDAO.findOne(id);
+        }
+        return null;
     }
 
     @Override

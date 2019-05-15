@@ -14,13 +14,14 @@ public class UserDAO{
 
 	private ConnectionFactory connectionFactory;
 	
-	public Integer save(User user){
+	public User save(User user){
 		Session session = connectionFactory.getSessionFactory().openSession();
         session.getTransaction().begin();
         Integer id = (Integer) session.save(user);
+        user.setId(id);
         session.getTransaction().commit();
         session.close();
-        return id;
+        return user;
 	}
 
     public User update(User user){
@@ -46,7 +47,6 @@ public class UserDAO{
         session.getTransaction().begin();
         
         String sql = "SELECT * FROM users";
-              
         List<User> result = session.createNativeQuery(sql).getResultList();
         
         session.close();
@@ -60,5 +60,4 @@ public class UserDAO{
         session.getTransaction().commit();
         session.close();
 	}
-	
 }

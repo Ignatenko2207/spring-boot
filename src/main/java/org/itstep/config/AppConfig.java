@@ -14,14 +14,14 @@ public class AppConfig {
 
     @Bean()
     @Qualifier("h2Factory")
-    @Profile("dev")
+    @Profile("test")
     public ConnectionFactory getH2Factory() {
         return new H2Factory();
     }
 
     @Bean()
     @Qualifier("postgresFactory")
-    @Profile("test")
+    @Profile("dev")
     public ConnectionFactory getPostgresFactory() {
         return new PostgresFactory();
     }
