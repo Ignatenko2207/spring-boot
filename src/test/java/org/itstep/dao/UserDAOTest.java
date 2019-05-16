@@ -1,6 +1,6 @@
 package org.itstep.dao;
 
-import org.itstep.config.AppConfig;
+import org.itstep.ApplicationRunner;
 import org.itstep.entity.Profile;
 import org.itstep.entity.User;
 import org.junit.jupiter.api.Test;
@@ -12,8 +12,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringJUnitConfig(AppConfig.class)
-@ActiveProfiles("test")
+@SpringJUnitConfig(ApplicationRunner.class)
+@ActiveProfiles("dev")
 public class UserDAOTest {
 
     @Autowired
@@ -22,7 +22,7 @@ public class UserDAOTest {
     @Test
     public void getConnectionFactory() {
         assertNotNull(userDAO.getConnectionFactory());
-        assertTrue(userDAO.getConnectionFactory().getClass().getSimpleName().equals("PostgresFactory"));
+        assertTrue(userDAO.getConnectionFactory().getClass().getSimpleName().equals("H2Factory"));
     }
 
     @Test

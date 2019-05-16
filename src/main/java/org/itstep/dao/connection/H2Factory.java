@@ -8,9 +8,13 @@ import org.itstep.entity.Cart;
 import org.itstep.entity.Item;
 import org.itstep.entity.Order;
 import org.itstep.entity.User;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Component;
 
 import java.util.Properties;
 
+@Component
+@Profile("dev")
 public class H2Factory implements ConnectionFactory {
 
     public SessionFactory getSessionFactory() {

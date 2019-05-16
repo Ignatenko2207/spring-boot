@@ -5,13 +5,17 @@ import lombok.Setter;
 import org.hibernate.Session;
 import org.itstep.dao.connection.ConnectionFactory;
 import org.itstep.entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Setter
 @Getter
+@Repository
 public class UserDAO{
 
+    @Autowired
 	private ConnectionFactory connectionFactory;
 	
 	public User save(User user){
