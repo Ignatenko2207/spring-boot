@@ -40,7 +40,7 @@ public class UserController {
     public ResponseEntity<User> getOne(@PathVariable Integer id) {
         User userFromDB = userService.findOne(id);
         if (userFromDB != null){
-            return new ResponseEntity<User>(userFromDB, HttpStatus.OK);
+            return new ResponseEntity(userFromDB, HttpStatus.OK);
         }
         return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }
@@ -57,7 +57,7 @@ public class UserController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @GetMapping("/get-text")
+    @GetMapping(path = "/get-text")
     public ResponseEntity<String> getText() {
         return new ResponseEntity("Hello!", HttpStatus.OK);
     }

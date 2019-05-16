@@ -34,12 +34,15 @@ public class UserDAO{
     }
 	
 	public User findOne(Integer id){
-		Session session = connectionFactory.getSessionFactory().openSession();
-        session.getTransaction().begin();
-        User userFromDB = session.get(User.class, id);
-        session.getTransaction().commit();
-        session.close();
-        return userFromDB;
+	    try (Session session = connectionFactory.getSessionFactory().openSession();){
+            session.getTransaction().begin();
+            User userFromDB = session.get(User.class, id);
+            session.getTransaction().commit();
+            return userFromDB;
+	    } catch (Exception e){
+	        e.printStackTrace();
+        }
+	    return null;
 	}
 
 	public List<User> findAll(){

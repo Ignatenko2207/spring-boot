@@ -22,7 +22,7 @@ public class UserDAOTest {
     @Test
     public void getConnectionFactory() {
         assertNotNull(userDAO.getConnectionFactory());
-        assertTrue(userDAO.getConnectionFactory().getClass().getSimpleName().equals("H2Factory"));
+        assertTrue(userDAO.getConnectionFactory().getClass().getSimpleName().equals("PostgresFactory"));
     }
 
     @Test
