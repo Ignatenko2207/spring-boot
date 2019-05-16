@@ -56,9 +56,4 @@ public class UserController {
         userService.delete(id);
         return new ResponseEntity(HttpStatus.OK);
     }
-
-    @GetMapping(path = "/get-text")
-    public ResponseEntity<String> getText() {
-        return new ResponseEntity("Hello!", HttpStatus.OK);
-    }
 }
