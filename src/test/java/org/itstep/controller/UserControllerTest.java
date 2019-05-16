@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
@@ -20,6 +21,8 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringJUnitConfig(ApplicationRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -28,9 +31,6 @@ public class UserControllerTest {
 
     @Autowired
     TestRestTemplate testRestTemplate;
-
-    @Autowired
-    UserController userController;
 
     @MockBean
     UserService userService;
@@ -67,7 +67,19 @@ public class UserControllerTest {
     }
 
     @Test
-    public void getAll() {
+    public void getAll() throws URISyntaxException {
+        List<User> users = new ArrayList<>();
+        Mockito.when(userService.findAll()).thenReturn(users);
+
+        RequestEntity<User> request = new RequestEntity<>(HttpMethod.GET, new URI("/user/get-all"));
+
+        ResponseEntity<List> response = testRestTemplate.exchange(request, ParameterizedTypeReference.forType(List.class));
+
+        Assertions.assertEquals(response.getStatusCode(), HttpStatus.OK);
+
+        Mockito.verify(userService, Mockito.times(1)).findAll();
+
+        Assertions.assertEquals(response.getBody().getClass().getSimpleName(), "ArrayList");
     }
 
     @Test
