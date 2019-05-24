@@ -13,7 +13,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringJUnitConfig(ApplicationRunner.class)
-@ActiveProfiles("dev")
+@ActiveProfiles("test")
 public class UserDAOTest {
 
     @Autowired
@@ -22,7 +22,7 @@ public class UserDAOTest {
     @Test
     public void getConnectionFactory() {
         assertNotNull(userDAO.getConnectionFactory());
-        assertTrue(userDAO.getConnectionFactory().getClass().getSimpleName().equals("H2Factory"));
+        assertTrue(userDAO.getConnectionFactory().getClass().getSimpleName().equals("PostgresFactory"));
     }
 
     @Test
